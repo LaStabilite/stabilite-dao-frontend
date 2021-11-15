@@ -1,8 +1,8 @@
 {
-  "short_name": "Wonderland",
+  "short_name": "Stabilite",
   "start_url": ".",
   "homepage": "./",
-  "name": "Wonderland",
+  "name": "Stabilite",
   "launch_path": "/public/index.html",
   "icons": [
     {

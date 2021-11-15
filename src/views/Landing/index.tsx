@@ -6,14 +6,14 @@ import Main from "./components/Main";
 import Background from "./components/Background";
 
 function Landing() {
-    return (
-        <div className="landing-root">
-            <Header />
-            <Main />
-            <Footer />
-            <Background />
-        </div>
-    );
+  return (
+    <div className="landing-root">
+      <Header />
+      <Main />
+      <Footer />
+      <Background />
+    </div>
+  );
 }
 
 export default Landing;

@@ -14,14 +14,14 @@
 
     .wallet-link {
       margin: 10px;
-  
-      p{
-        color: #FFFFFF;
+
+      p {
+        color: #ffffff;
       }
     }
   }
 
-  .dapp-menu-links{
+  .dapp-menu-links {
     display: flex;
     align-items: center;
 
@@ -43,24 +43,24 @@
         }
       }
 
-      .button-dapp-menu{
-        .dapp-menu-item{
+      .button-dapp-menu {
+        .dapp-menu-item {
           display: flex;
           flex-direction: row;
           align-items: center;
-        
-          p{
+
+          p {
             font-weight: 600;
             font-size: 16px;
-            color: #FFFFFF;
+            color: #ffffff;
             font-family: Montserrat SemiBold;
           }
         }
       }
 
       .button-dapp-menu.active {
-        .dapp-menu-item{
-          p{
+        .dapp-menu-item {
+          p {
             text-decoration: underline;
           }
         }
@@ -69,20 +69,20 @@
       .bond-discounts {
         text-align: left;
         padding-left: 54px;
-      
-        a{
+
+        a {
           margin-left: 0;
           margin-top: 20px;
           margin-bottom: 20px;
         }
-      
-        p{
+
+        p {
           font-family: Montserrat;
           font-size: 14px;
           line-height: 17px;
           color: rgba(255, 255, 255, 0.6);
         }
-        
+
         .bond {
           display: block;
           padding: unset;
@@ -97,9 +97,9 @@
     }
   }
 
-  .dapp-menu-doc-link{
+  .dapp-menu-doc-link {
     margin-top: auto;
-    
+
     a {
       display: flex;
       width: 100%;
@@ -114,12 +114,12 @@
         vertical-align: middle;
       }
 
-      p{
+      p {
         font-family: Montserrat SemiBold;
         font-weight: 600;
         font-size: 16px;
         line-height: 20px;
-        color: #FFFFFF;
+        color: #ffffff;
       }
     }
   }
@@ -141,19 +141,18 @@
   }
 }
 
-.MuiDrawer-root{
-  .MuiPaper-root{
-    
+.MuiDrawer-root {
+  .MuiPaper-root {
     z-index: 7;
 
     @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
       background: rgba(36, 39, 41, 0.1);
       backdrop-filter: blur(40px);
     }
-  
+
     /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
     @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-      background: #181B1C;
+      background: #181b1c;
     }
   }
 }
