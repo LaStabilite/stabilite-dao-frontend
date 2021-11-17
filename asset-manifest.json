@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "./static/css/main.6fc06f9d.chunk.css",
+    "main.js": "./static/js/main.bd633094.chunk.js",
+    "runtime-main.js": "./static/js/runtime-main.79507de4.js",
+    "static/js/2.601ed5b5.chunk.js": "./static/js/2.601ed5b5.chunk.js",
+    "index.html": "./index.html",
+    "static/js/2.601ed5b5.chunk.js.LICENSE.txt": "./static/js/2.601ed5b5.chunk.js.LICENSE.txt",
+    "static/media/AVAX.1b6b3fb1.svg": "./static/media/AVAX.1b6b3fb1.svg",
+    "static/media/style.scss": "./static/media/Montserrat-SemiBold.fa8441f3.ttf",
+    "static/media/STABIL-MIM.2c389c85.svg": "./static/media/STABIL-MIM.2c389c85.svg",
+    "static/media/STABIL.03d42a51.svg": "./static/media/STABIL.03d42a51.svg",
+    "static/media/bond.9bb2c50a.svg": "./static/media/bond.9bb2c50a.svg",
+    "static/media/dashboard.25e1b5ce.svg": "./static/media/dashboard.25e1b5ce.svg",
+    "static/media/discord.d78c1d63.svg": "./static/media/discord.d78c1d63.svg",
+    "static/media/github.498e6177.svg": "./static/media/github.498e6177.svg",
+    "static/media/hamburger.f09dcc2a.svg": "./static/media/hamburger.f09dcc2a.svg",
+    "static/media/sSTABIL.9a224de8.png": "./static/media/sSTABIL.9a224de8.png",
+    "static/media/settings.5b041d4d.svg": "./static/media/settings.5b041d4d.svg",
+    "static/media/stabilUSD.181f36e5.svg": "./static/media/stabilUSD.181f36e5.svg",
+    "static/media/stabilite-nav-header.a2799c5e.svg": "./static/media/stabilite-nav-header.a2799c5e.svg",
+    "static/media/stake.2157b85f.svg": "./static/media/stake.2157b85f.svg",
+    "static/media/twitter.f6e6e036.svg": "./static/media/twitter.f6e6e036.svg",
+    "static/media/x.0e19066c.svg": "./static/media/x.0e19066c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.79507de4.js",
+    "static/js/2.601ed5b5.chunk.js",
+    "static/css/main.6fc06f9d.chunk.css",
+    "static/js/main.bd633094.chunk.js"
+  ]
+}
