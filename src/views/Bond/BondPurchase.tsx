@@ -25,7 +25,6 @@ import { IAllBondData } from "../../hooks/bonds";
 import useDebounce from "../../hooks/debounce";
 import { messages } from "../../constants/messages";
 import { warning } from "../../store/slices/messages-slice";
-import Zapin from "./Zapin";
 
 interface IBondPurchaseProps {
   bond: IAllBondData;
@@ -47,7 +46,6 @@ function BondPurchase({
   const isBondLoading = useSelector<IReduxState, boolean>(
     state => state.bonding.loading ?? true,
   );
-  const [zapinOpen, setZapinOpen] = useState(false);
 
   const pendingTransactions = useSelector<IReduxState, IPendingTxn[]>(state => {
     return state.pendingTransactions;
@@ -112,7 +110,7 @@ function BondPurchase({
   const setMax = () => {
     let amount: any = Math.min(
       bond.maxBondPriceToken * 0.9999,
-      useAvax ? bond.avaxBalance * 0.99 : bond.balance,
+      useAvax ? bond.celoBalance * 0.99 : bond.balance,
     );
 
     if (amount) {
@@ -134,20 +132,6 @@ function BondPurchase({
     if (await checkWrongNetwork()) return;
 
     dispatch(changeApproval({ address, bond, provider, networkID: chainID }));
-  };
-
-  const handleZapinOpen = () => {
-    dispatch(
-      calcBondDetails({ bond, value: "0", provider, networkID: chainID }),
-    );
-    setZapinOpen(true);
-  };
-
-  const handleZapinClose = () => {
-    dispatch(
-      calcBondDetails({ bond, value: quantity, provider, networkID: chainID }),
-    );
-    setZapinOpen(false);
   };
 
   const displayUnits = useAvax ? "AVAX" : bond.displayUnits;
@@ -226,13 +210,6 @@ function BondPurchase({
           </div>
         )}
 
-        <div
-          className="transaction-button bond-approve-btn"
-          onClick={handleZapinOpen}
-        >
-          <p>Zap</p>
-        </div>
-
         {!hasAllowance() && !useAvax && (
           <div className="help-text">
             <p className="help-text-desc">
@@ -259,7 +236,7 @@ function BondPurchase({
                 <Skeleton width="100px" />
               ) : (
                 <>
-                  {trim(useAvax ? bond.avaxBalance : bond.balance, 4)}{" "}
+                  {trim(useAvax ? bond.celoBalance : bond.balance, 4)}{" "}
                   {displayUnits}
                 </>
               )}
@@ -272,7 +249,7 @@ function BondPurchase({
               {isBondLoading ? (
                 <Skeleton width="100px" />
               ) : (
-                `${trim(bond.bondQuote, 4)} TIME`
+                `${trim(bond.bondQuote, 4)} STABIL`
               )}
             </p>
           </div>
@@ -283,7 +260,7 @@ function BondPurchase({
               {isBondLoading ? (
                 <Skeleton width="100px" />
               ) : (
-                `${trim(bond.maxBondPrice, 4)} TIME`
+                `${trim(bond.maxBondPrice, 4)} STABIL`
               )}
             </p>
           </div>
@@ -308,7 +285,7 @@ function BondPurchase({
 
           <div className="data-row">
             <p className="bond-balance-title">Minimum purchase</p>
-            <p className="bond-balance-title">0.01 TIME</p>
+            <p className="bond-balance-title">0.01 STABIL</p>
           </div>
 
           {recipientAddress !== address && (
@@ -325,7 +302,6 @@ function BondPurchase({
           )}
         </Box>
       </Slide>
-      <Zapin open={zapinOpen} handleClose={handleZapinClose} bond={bond} />
     </Box>
   );
 }

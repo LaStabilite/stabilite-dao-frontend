@@ -37,14 +37,15 @@ export const loadAppDetails = createAsyncThunk(
       provider,
     );
     const currentBlock = await provider.getBlockNumber();
-    const currentBlockTime = (await provider.getBlock(currentBlock)).timestamp;
+    // const currentBlockTime = (await provider.getBlock(currentBlock)).timestamp;
+    const currentBlockTime = Math.floor(Date.now() / 1000); // TODO
     const memoContract = new ethers.Contract(
-      addresses.MEMO_ADDRESS,
+      addresses.sSTABIL_ADDRESS,
       MemoTokenContract,
       provider,
     );
-    const timeContract = new ethers.Contract(
-      addresses.TIME_ADDRESS,
+    const stabilContract = new ethers.Contract(
+      addresses.STABIL_ADDRESS,
       TimeTokenContract,
       provider,
     );
@@ -53,7 +54,7 @@ export const loadAppDetails = createAsyncThunk(
       ((await getMarketPrice(networkID, provider)) / Math.pow(10, 9)) *
       mimPrice;
 
-    const totalSupply = (await timeContract.totalSupply()) / Math.pow(10, 9);
+    const totalSupply = (await stabilContract.totalSupply()) / Math.pow(10, 9);
     const circSupply =
       (await memoContract.circulatingSupply()) / Math.pow(10, 9);
 

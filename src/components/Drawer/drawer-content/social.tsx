@@ -8,21 +8,17 @@ export default function Social() {
   return (
     <div className="social-row">
       <Link
-        href="https://github.com/Stabilite-Money/stabilite-frontend"
+        href="https://github.com/LaStabilite/stabilite-dao-frontend"
         target="_blank"
       >
         <SvgIcon color="primary" component={GitHub} />
       </Link>
 
-      <Link href="https://twitter.com/stabilite_fi?s=21" target="_blank">
+      <Link href="https://twitter.com/LaStabilite" target="_blank">
         <SvgIcon color="primary" component={Twitter} />
       </Link>
 
-      <Link href="https://t.me/joinchat/6UybL5rJMEhjN2Y5" target="_blank">
-        <SvgIcon viewBox="0 0 32 32" color="primary" component={Telegram} />
-      </Link>
-
-      <Link href="https://discord.gg/thDHseaHUt" target="_blank">
+      <Link href="http://discord.gg/mE6ZWjxRsW" target="_blank">
         <SvgIcon color="primary" component={Discord} />
       </Link>
     </div>

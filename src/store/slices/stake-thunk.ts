@@ -3,7 +3,6 @@ import { getAddresses } from "../../constants";
 import {
   StakingHelperContract,
   TimeTokenContract,
-  MemoTokenContract,
   StakingContract,
 } from "../../abi";
 import {
@@ -49,14 +48,9 @@ export const changeApproval = createAsyncThunk(
     const addresses = getAddresses(networkID);
 
     const signer = provider.getSigner();
-    const timeContract = new ethers.Contract(
-      addresses.TIME_ADDRESS,
+    const stabilContract = new ethers.Contract(
+      addresses.STABIL_ADDRESS,
       TimeTokenContract,
-      signer,
-    );
-    const memoContract = new ethers.Contract(
-      addresses.MEMO_ADDRESS,
-      MemoTokenContract,
       signer,
     );
 
@@ -64,25 +58,17 @@ export const changeApproval = createAsyncThunk(
     try {
       const gasPrice = await getGasPrice(provider);
 
-      if (token === "time") {
-        approveTx = await timeContract.approve(
+      if (token === "stabil") {
+        approveTx = await stabilContract.approve(
           addresses.STAKING_HELPER_ADDRESS,
           ethers.constants.MaxUint256,
           { gasPrice },
         );
       }
 
-      if (token === "memo") {
-        approveTx = await memoContract.approve(
-          addresses.STAKING_ADDRESS,
-          ethers.constants.MaxUint256,
-          { gasPrice },
-        );
-      }
-
-      const text = "Approve " + (token === "time" ? "Staking" : "Unstaking");
+      const text = "Approve " + (token === "stabil" ? "Staking" : "Unstaking");
       const pendingTxnType =
-        token === "time" ? "approve_staking" : "approve_unstaking";
+        token === "stabil" ? "approve_staking" : "approve_unstaking";
 
       dispatch(
         fetchPendingTxns({
@@ -103,11 +89,11 @@ export const changeApproval = createAsyncThunk(
 
     await sleep(2);
 
-    const stakeAllowance = await timeContract.allowance(
+    const stakeAllowance = await stabilContract.allowance(
       address,
       addresses.STAKING_HELPER_ADDRESS,
     );
-    const unstakeAllowance = await memoContract.allowance(
+    const unstakeAllowance = await stabilContract.allowance(
       address,
       addresses.STAKING_ADDRESS,
     );
@@ -115,7 +101,7 @@ export const changeApproval = createAsyncThunk(
     return dispatch(
       fetchAccountSuccess({
         staking: {
-          timeStake: Number(stakeAllowance),
+          stabilStake: Number(stakeAllowance),
           memoUnstake: Number(unstakeAllowance),
         },
       }),

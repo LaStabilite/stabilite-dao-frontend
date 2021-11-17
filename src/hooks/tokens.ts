@@ -1,25 +1,28 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import allTokens from "../helpers/tokens";
+import tokenMap from "../helpers/tokens";
 import { IUserTokenDetails } from "../store/slices/account-slice";
 import { IReduxState } from "../store/slices/state.interface";
 import { IToken } from "../helpers/tokens";
+import { DEFAULT_NETWORK, Networks } from "src/constants";
 
 // Smash all the interfaces together to get the BondData Type
 export interface IAllTokenData extends IToken, IUserTokenDetails {}
-
-const initialTokenArray = allTokens;
 
 function useTokens() {
   const accountLoading = useSelector<IReduxState, boolean>(
     state => state.account.loading,
   );
+  const networkID = useSelector<IReduxState, number>(state => {
+    return (state.app && state.app.networkID) || DEFAULT_NETWORK;
+  }) as Networks;
+  const allTokens = tokenMap[networkID];
   const accountTokensState = useSelector<
     IReduxState,
     { [key: string]: IUserTokenDetails }
   >(state => state.account.tokens);
   //@ts-ignore
-  const [tokens, setTokens] = useState<IAllTokenData[]>(initialTokenArray);
+  const [tokens, setTokens] = useState<IAllTokenData[]>(allTokens);
 
   useEffect(() => {
     let tokenDetails: IAllTokenData[];

@@ -1,5 +1,5 @@
-import TimeImg from "../assets/tokens/TIME.svg";
-import MemoImg from "../assets/tokens/MEMO.png";
+import TimeImg from "../assets/tokens/STABIL.svg";
+import MemoImg from "../assets/tokens/sSTABIL.png";
 
 function toUrl(tokenPath: string): string {
   const host = window.location.origin;

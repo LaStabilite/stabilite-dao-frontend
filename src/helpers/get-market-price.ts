@@ -1,15 +1,15 @@
 import { ethers } from "ethers";
 import { LpReserveContract } from "../abi";
-import { mimTime } from "../helpers/bond";
+import { usdStabil } from "../helpers/bond";
 import { Networks } from "../constants/blockchain";
 
 export async function getMarketPrice(
   networkID: Networks,
   provider: ethers.Signer | ethers.providers.Provider,
 ): Promise<number> {
-  const mimTimeAddress = mimTime.getAddressForReserve(networkID);
+  const usdStabilAddress = usdStabil.getAddressForReserve(networkID);
   const pairContract = new ethers.Contract(
-    mimTimeAddress,
+    usdStabilAddress,
     LpReserveContract,
     provider,
   );

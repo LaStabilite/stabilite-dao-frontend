@@ -72,7 +72,7 @@ function ChooseBond() {
             <Grid item xs={12} sm={6}>
               <Box textAlign="center">
                 <p className="choose-bond-view-card-metrics-title">
-                  TIME Price
+                  STABIL Price
                 </p>
                 <p className="choose-bond-view-card-metrics-value">
                   {isAppLoading ? (

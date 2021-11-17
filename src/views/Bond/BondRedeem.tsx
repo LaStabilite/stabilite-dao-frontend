@@ -126,7 +126,7 @@ function BondRedeem({ bond }: IBondRedeem) {
               {isBondLoading ? (
                 <Skeleton width="100px" />
               ) : (
-                `${trim(bond.interestDue, 4)} TIME`
+                `${trim(bond.interestDue, 4)} STABIL`
               )}
             </p>
           </div>
@@ -136,7 +136,7 @@ function BondRedeem({ bond }: IBondRedeem) {
               {isBondLoading ? (
                 <Skeleton width="100px" />
               ) : (
-                `${trim(bond.pendingPayout, 4)} TIME`
+                `${trim(bond.pendingPayout, 4)} STABIL`
               )}
             </p>
           </div>

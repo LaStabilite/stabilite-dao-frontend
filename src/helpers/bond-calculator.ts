@@ -10,7 +10,7 @@ export function getBondCalculator(
 ) {
   const addresses = getAddresses(networkID);
   return new ethers.Contract(
-    addresses.TIME_BONDING_CALC_ADDRESS,
+    addresses.STABIL_BONDING_CALC_ADDRESS,
     BondingCalcContract,
     provider,
   );

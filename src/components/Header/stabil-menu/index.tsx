@@ -2,11 +2,11 @@ import { useState } from "react";
 import {
   getAddresses,
   TOKEN_DECIMALS,
-  DEFAULD_NETWORK,
+  DEFAULT_NETWORK,
 } from "../../../constants";
 import { useSelector } from "react-redux";
 import { Link, Fade, Popper } from "@material-ui/core";
-import "./time-menu.scss";
+import "./stabil-menu.scss";
 import { IReduxState } from "../../../store/slices/state.interface";
 import { getTokenUrl } from "../../../helpers";
 
@@ -39,13 +39,13 @@ function TimeMenu() {
   const isEthereumAPIAvailable = window.ethereum;
 
   const networkID = useSelector<IReduxState, number>(state => {
-    return (state.app && state.app.networkID) || DEFAULD_NETWORK;
+    return (state.app && state.app.networkID) || DEFAULT_NETWORK;
   });
 
   const addresses = getAddresses(networkID);
 
-  const MEMO_ADDRESS = addresses.MEMO_ADDRESS;
-  const TIME_ADDRESS = addresses.TIME_ADDRESS;
+  const sSTABIL_ADDRESS = addresses.sSTABIL_ADDRESS;
+  const STABIL_ADDRESS = addresses.STABIL_ADDRESS;
 
   const handleClick = (event: any) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
@@ -55,16 +55,16 @@ function TimeMenu() {
 
   return (
     <div
-      className="time-menu-root"
+      className="stabil-menu-root"
       onMouseEnter={e => handleClick(e)}
       onMouseLeave={e => handleClick(e)}
     >
-      <div className="time-menu-btn">
-        <p>TIME</p>
+      <div className="stabil-menu-btn">
+        <p>STABIL</p>
       </div>
 
       <Popper
-        className="time-menu-popper"
+        className="stabil-menu-popper"
         open={open}
         anchorEl={anchorEl}
         transition
@@ -74,10 +74,10 @@ function TimeMenu() {
             <div className="tooltip">
               <Link
                 className="tooltip-item"
-                href={`https://www.traderjoexyz.com/#/trade?inputCurrency=&outputCurrency=${TIME_ADDRESS}`}
+                href={`https://app.ubeswap.org/#/swap?inputCurrency=&outputCurrency=${STABIL_ADDRESS}`}
                 target="_blank"
               >
-                <p>Buy on Trader Joe</p>
+                <p>Buy on Ubeswap</p>
               </Link>
 
               {isEthereumAPIAvailable && (
@@ -87,15 +87,15 @@ function TimeMenu() {
                   <div className="divider" />
                   <div
                     className="tooltip-item"
-                    onClick={addTokenToWallet("TIME", TIME_ADDRESS)}
+                    onClick={addTokenToWallet("STABIL", STABIL_ADDRESS)}
                   >
-                    <p>TIME</p>
+                    <p>STABIL</p>
                   </div>
                   <div
                     className="tooltip-item"
-                    onClick={addTokenToWallet("MEMO", MEMO_ADDRESS)}
+                    onClick={addTokenToWallet("sSTABIL", sSTABIL_ADDRESS)}
                   >
-                    <p>MEMO</p>
+                    <p>sSTABIL</p>
                   </div>
                 </div>
               )}

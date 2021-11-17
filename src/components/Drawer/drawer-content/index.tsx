@@ -38,13 +38,13 @@ function NavContent() {
     <div className="dapp-sidebar">
       <div className="branding-header">
         <Link href="https://stabilite.money" target="_blank">
-          <img alt="" src={StabiliteIcon} />
+          <img alt="" style={{ width: "160px" }} src={StabiliteIcon} />
         </Link>
 
         {address && (
           <div className="wallet-link">
             <Link
-              href={`https://cchain.explorer.avax.network/address/${address}`}
+              href={`https://explorer.celo.org/address/${address}`}
               target="_blank"
             >
               <p>{shorten(address)}</p>
@@ -123,12 +123,8 @@ function NavContent() {
         </div>
       </div>
       <div className="dapp-menu-doc-link">
-        <Link href="https://stabilite.gitbook.io/stabilite/" target="_blank">
-          <img alt="" src={DocsIcon} />
-          <p>Docs</p>
-        </Link>
-        <Link href="https://legacy.stabilite.money/" target="_blank">
-          <p>Legacy website</p>
+        <Link href="https://stabilite.cash/" target="_blank">
+          <p>Mint stabilUSD</p>
         </Link>
       </div>
       <Social />

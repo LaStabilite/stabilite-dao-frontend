@@ -35,13 +35,13 @@ function Stake() {
     return state.app.fiveDayRate;
   });
   const timeBalance = useSelector<IReduxState, string>(state => {
-    return state.account.balances && state.account.balances.time;
+    return state.account.balances && state.account.balances.stabil;
   });
   const memoBalance = useSelector<IReduxState, string>(state => {
     return state.account.balances && state.account.balances.memo;
   });
   const stakeAllowance = useSelector<IReduxState, number>(state => {
-    return state.account.staking && state.account.staking.time;
+    return state.account.staking && state.account.staking.stabil;
   });
   const unstakeAllowance = useSelector<IReduxState, number>(state => {
     return state.account.staking && state.account.staking.memo;
@@ -135,7 +135,7 @@ function Stake() {
           >
             <Grid item>
               <div className="stake-card-header">
-                <p className="stake-card-header-title">TIME Staking (🎩, 🎩)</p>
+                <p className="stake-card-header-title">STABIL Staking (⚓️, ⚓️)</p>
                 <RebaseTimer />
               </div>
             </Grid>
@@ -184,7 +184,7 @@ function Stake() {
                       <p className="stake-card-metrics-title">Current Index</p>
                       <p className="stake-card-metrics-value">
                         {currentIndex ? (
-                          <>{trim(Number(currentIndex), 2)} TIME</>
+                          <>{trim(Number(currentIndex), 2)} STABIL</>
                         ) : (
                           <Skeleton width="150px" />
                         )}
@@ -205,7 +205,7 @@ function Stake() {
                     <p>Connect Wallet</p>
                   </div>
                   <p className="stake-card-wallet-desc-text">
-                    Connect your wallet to stake TIME tokens!
+                    Connect your wallet to stake STABIL tokens!
                   </p>
                 </div>
               )}
@@ -268,7 +268,7 @@ function Stake() {
                                 {txnButtonText(
                                   pendingTransactions,
                                   "staking",
-                                  "Stake TIME",
+                                  "Stake STABIL",
                                 )}
                               </p>
                             </div>
@@ -315,7 +315,7 @@ function Stake() {
                                 {txnButtonText(
                                   pendingTransactions,
                                   "unstaking",
-                                  "Unstake TIME",
+                                  "Unstake STABIL",
                                 )}
                               </p>
                             </div>
@@ -367,7 +367,7 @@ function Stake() {
                         {isAppLoading ? (
                           <Skeleton width="80px" />
                         ) : (
-                          <>{trim(Number(timeBalance), 4)} TIME</>
+                          <>{trim(Number(timeBalance), 4)} STABIL</>
                         )}
                       </p>
                     </div>
@@ -378,7 +378,7 @@ function Stake() {
                         {isAppLoading ? (
                           <Skeleton width="80px" />
                         ) : (
-                          <>{trimmedMemoBalance} MEMO</>
+                          <>{trimmedMemoBalance} sSTABIL</>
                         )}
                       </p>
                     </div>
@@ -389,7 +389,7 @@ function Stake() {
                         {isAppLoading ? (
                           <Skeleton width="80px" />
                         ) : (
-                          <>{nextRewardValue} MEMO</>
+                          <>{nextRewardValue} sSTABIL</>
                         )}
                       </p>
                     </div>

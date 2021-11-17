@@ -3,7 +3,7 @@ export const messages = {
     "Please connect your wallet to the Avalanche network to use Stabilite.",
   please_connect_wallet: "Please connect your wallet.",
   try_mint_more: (value: string) =>
-    `You're trying to mint more than the maximum payout available! The maximum mint payout is ${value} TIME.`,
+    `You're trying to mint more than the maximum payout available! The maximum mint payout is ${value} STABIL.`,
   before_minting: "Before minting, enter a value.",
   existing_mint:
     "You have an existing mint. Minting will reset your vesting period and forfeit any pending claimable rewards. We recommend claiming rewards first or using a fresh wallet. Do you still wish to proceed?",
