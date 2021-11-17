@@ -67,7 +67,7 @@ function BondRedeem({ bond }: IBondRedeem) {
   };
 
   const vestingPeriod = () => {
-    return prettifySeconds(bondingState.vestingTerm, "day");
+    return prettifySeconds(bondingState.vestingTerm / 5, "day");
   };
 
   return (

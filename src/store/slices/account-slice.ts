@@ -30,7 +30,7 @@ interface IGetBalances {
 
 interface IAccountBalances {
   balances: {
-    memo: string;
+    sstabil: string;
     stabil: string;
   };
 }
@@ -44,12 +44,12 @@ export const getBalances = createAsyncThunk(
   }: IGetBalances): Promise<IAccountBalances> => {
     const addresses = getAddresses(networkID);
 
-    const memoContract = new ethers.Contract(
+    const sstabilContract = new ethers.Contract(
       addresses.sSTABIL_ADDRESS,
       MemoTokenContract,
       provider,
     );
-    const memoBalance = await memoContract.balanceOf(address);
+    const sstabilBalance = await sstabilContract.balanceOf(address);
     const stabilContract = new ethers.Contract(
       addresses.STABIL_ADDRESS,
       TimeTokenContract,
@@ -59,7 +59,7 @@ export const getBalances = createAsyncThunk(
 
     return {
       balances: {
-        memo: ethers.utils.formatUnits(memoBalance, "gwei"),
+        sstabil: ethers.utils.formatUnits(sstabilBalance, "gwei"),
         stabil: ethers.utils.formatUnits(stabilBalance, "gwei"),
       },
     };
@@ -75,11 +75,11 @@ interface ILoadAccountDetails {
 interface IUserAccountDetails {
   balances: {
     stabil: string;
-    memo: string;
+    sstabil: string;
   };
   staking: {
     stabil: number;
-    memo: number;
+    sstabil: number;
   };
 }
 
@@ -91,7 +91,7 @@ export const loadAccountDetails = createAsyncThunk(
     address,
   }: ILoadAccountDetails): Promise<IUserAccountDetails> => {
     let stabilBalance = 0;
-    let memoBalance = 0;
+    let sstabilBalance = 0;
     let stakeAllowance = 0;
     let unstakeAllowance = 0;
 
@@ -111,13 +111,13 @@ export const loadAccountDetails = createAsyncThunk(
     }
 
     if (addresses.sSTABIL_ADDRESS) {
-      const memoContract = new ethers.Contract(
+      const sstabilContract = new ethers.Contract(
         addresses.sSTABIL_ADDRESS,
         MemoTokenContract,
         provider,
       );
-      memoBalance = await memoContract.balanceOf(address);
-      unstakeAllowance = await memoContract.allowance(
+      sstabilBalance = await sstabilContract.balanceOf(address);
+      unstakeAllowance = await sstabilContract.allowance(
         address,
         addresses.STAKING_ADDRESS,
       );
@@ -125,12 +125,12 @@ export const loadAccountDetails = createAsyncThunk(
 
     return {
       balances: {
-        memo: ethers.utils.formatUnits(memoBalance, "gwei"),
+        sstabil: ethers.utils.formatUnits(sstabilBalance, "gwei"),
         stabil: ethers.utils.formatUnits(stabilBalance, "gwei"),
       },
       staking: {
         stabil: Number(stakeAllowance),
-        memo: Number(unstakeAllowance),
+        sstabil: Number(unstakeAllowance),
       },
     };
   },
@@ -282,13 +282,13 @@ export const calculateUserTokenDetails = createAsyncThunk(
 export interface IAccountSlice {
   bonds: { [key: string]: IUserBondDetails };
   balances: {
-    memo: string;
+    sstabil: string;
     stabil: string;
   };
   loading: boolean;
   staking: {
     stabil: number;
-    memo: number;
+    sstabil: number;
   };
   tokens: { [key: string]: IUserTokenDetails };
 }
@@ -296,8 +296,8 @@ export interface IAccountSlice {
 const initialState: IAccountSlice = {
   loading: true,
   bonds: {},
-  balances: { memo: "", stabil: "" },
-  staking: { stabil: 0, memo: 0 },
+  balances: { sstabil: "", stabil: "" },
+  staking: { stabil: 0, sstabil: 0 },
   tokens: {},
 };
 

@@ -34,17 +34,17 @@ function Stake() {
   const fiveDayRate = useSelector<IReduxState, number>(state => {
     return state.app.fiveDayRate;
   });
-  const timeBalance = useSelector<IReduxState, string>(state => {
+  const stabilBalance = useSelector<IReduxState, string>(state => {
     return state.account.balances && state.account.balances.stabil;
   });
-  const memoBalance = useSelector<IReduxState, string>(state => {
-    return state.account.balances && state.account.balances.memo;
+  const sstabilBalance = useSelector<IReduxState, string>(state => {
+    return state.account.balances && state.account.balances.sstabil;
   });
   const stakeAllowance = useSelector<IReduxState, number>(state => {
     return state.account.staking && state.account.staking.stabil;
   });
   const unstakeAllowance = useSelector<IReduxState, number>(state => {
-    return state.account.staking && state.account.staking.memo;
+    return state.account.staking && state.account.staking.sstabil;
   });
   const stakingRebase = useSelector<IReduxState, number>(state => {
     return state.app.stakingRebase;
@@ -62,9 +62,9 @@ function Stake() {
 
   const setMax = () => {
     if (view === 0) {
-      setQuantity(timeBalance);
+      setQuantity(stabilBalance);
     } else {
-      setQuantity(memoBalance);
+      setQuantity(sstabilBalance);
     }
   };
 
@@ -103,8 +103,8 @@ function Stake() {
 
   const hasAllowance = useCallback(
     token => {
-      if (token === "time") return stakeAllowance > 0;
-      if (token === "memo") return unstakeAllowance > 0;
+      if (token === "stabil") return stakeAllowance > 0;
+      if (token === "sstabil") return unstakeAllowance > 0;
       return 0;
     },
     [stakeAllowance],
@@ -115,7 +115,7 @@ function Stake() {
     setQuantity("");
   };
 
-  const trimmedMemoBalance = trim(Number(memoBalance), 6);
+  const trimmedMemoBalance = trim(Number(sstabilBalance), 6);
   const trimmedStakingAPY = trim(stakingAPY * 100, 1);
   const stakingRebasePercentage = trim(stakingRebase * 100, 4);
   const nextRewardValue = trim(
@@ -135,7 +135,9 @@ function Stake() {
           >
             <Grid item>
               <div className="stake-card-header">
-                <p className="stake-card-header-title">STABIL Staking (⚓️, ⚓️)</p>
+                <p className="stake-card-header-title">
+                  STABIL Staking (💵,💵)
+                </p>
                 <RebaseTimer />
               </div>
             </Grid>
@@ -183,7 +185,7 @@ function Stake() {
                     <div className="stake-card-index">
                       <p className="stake-card-metrics-title">Current Index</p>
                       <p className="stake-card-metrics-value">
-                        {currentIndex ? (
+                        {currentIndex != null ? (
                           <>{trim(Number(currentIndex), 2)} STABIL</>
                         ) : (
                           <Skeleton width="150px" />
@@ -253,7 +255,7 @@ function Stake() {
 
                       {view === 0 && (
                         <div className="stake-card-tab-panel">
-                          {address && hasAllowance("time") ? (
+                          {address && hasAllowance("stabil") ? (
                             <div
                               className="stake-card-tab-panel-btn"
                               onClick={() => {
@@ -283,7 +285,7 @@ function Stake() {
                                   )
                                 )
                                   return;
-                                onSeekApproval("time");
+                                onSeekApproval("stabil");
                               }}
                             >
                               <p>
@@ -300,7 +302,7 @@ function Stake() {
 
                       {view === 1 && (
                         <div className="stake-card-tab-panel">
-                          {address && hasAllowance("memo") ? (
+                          {address && hasAllowance("sstabil") ? (
                             <div
                               className="stake-card-tab-panel-btn"
                               onClick={() => {
@@ -330,7 +332,7 @@ function Stake() {
                                   )
                                 )
                                   return;
-                                onSeekApproval("memo");
+                                onSeekApproval("sstabil");
                               }}
                             >
                               <p>
@@ -348,11 +350,11 @@ function Stake() {
 
                     <div className="stake-card-action-help-text">
                       {address &&
-                        ((!hasAllowance("time") && view === 0) ||
-                          (!hasAllowance("memo") && view === 1)) && (
+                        ((!hasAllowance("stabil") && view === 0) ||
+                          (!hasAllowance("sstabil") && view === 1)) && (
                           <p>
                             Note: The "Approve" transaction is only needed when
-                            staking/unstaking for the first time; subsequent
+                            staking/unstaking for the first stabil; subsequent
                             staking/unstaking only requires you to perform the
                             "Stake" or "Unstake" transaction.
                           </p>
@@ -367,7 +369,7 @@ function Stake() {
                         {isAppLoading ? (
                           <Skeleton width="80px" />
                         ) : (
-                          <>{trim(Number(timeBalance), 4)} STABIL</>
+                          <>{trim(Number(stabilBalance), 4)} STABIL</>
                         )}
                       </p>
                     </div>

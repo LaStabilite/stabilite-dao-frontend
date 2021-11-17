@@ -4,6 +4,7 @@ import {
   StakingHelperContract,
   TimeTokenContract,
   StakingContract,
+  MemoTokenContract,
 } from "../../abi";
 import {
   clearPendingTxn,
@@ -53,6 +54,11 @@ export const changeApproval = createAsyncThunk(
       TimeTokenContract,
       signer,
     );
+    const sstabilContract = new ethers.Contract(
+      addresses.sSTABIL_ADDRESS,
+      MemoTokenContract,
+      signer,
+    );
 
     let approveTx;
     try {
@@ -61,6 +67,14 @@ export const changeApproval = createAsyncThunk(
       if (token === "stabil") {
         approveTx = await stabilContract.approve(
           addresses.STAKING_HELPER_ADDRESS,
+          ethers.constants.MaxUint256,
+          { gasPrice },
+        );
+      }
+
+      if (token === "sstabil") {
+        approveTx = await sstabilContract.approve(
+          addresses.STAKING_ADDRESS,
           ethers.constants.MaxUint256,
           { gasPrice },
         );
@@ -93,7 +107,7 @@ export const changeApproval = createAsyncThunk(
       address,
       addresses.STAKING_HELPER_ADDRESS,
     );
-    const unstakeAllowance = await stabilContract.allowance(
+    const unstakeAllowance = await sstabilContract.allowance(
       address,
       addresses.STAKING_ADDRESS,
     );

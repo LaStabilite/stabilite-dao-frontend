@@ -42,7 +42,6 @@ export const changeApproval = createAsyncThunk(
     }
 
     const signer = provider.getSigner();
-    console.log("bond", bond.name);
     const reserveContract = bond.getContractForReserve(networkID, signer);
 
     let approveTx;
@@ -201,7 +200,7 @@ export const calcBondDetails = createAsyncThunk(
       bondDiscount,
       bondQuote,
       purchased,
-      vestingTerm: Number(terms.vestingTerm),
+      vestingTerm: Number(terms.vestingTerm.toString()),
       maxBondPrice,
       bondPrice: bondPrice / Math.pow(10, 18),
       marketPrice,

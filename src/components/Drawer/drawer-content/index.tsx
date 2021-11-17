@@ -107,7 +107,7 @@ function NavContent() {
                 key={i}
                 className={"bond"}
               >
-                {!bond.bondDiscount ? (
+                {bond.bondDiscount == null ? (
                   <Skeleton variant="text" width={"150px"} />
                 ) : (
                   <p>

@@ -39,7 +39,7 @@ function ChooseBond() {
       <Zoom in={true}>
         <div className="choose-bond-view-card">
           <div className="choose-bond-view-card-header">
-            <p className="choose-bond-view-card-title"> Mint (🫖, 🫖)</p>
+            <p className="choose-bond-view-card-title">Mint</p>
           </div>
 
           <Grid
